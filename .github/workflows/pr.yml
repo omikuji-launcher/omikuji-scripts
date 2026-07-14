@@ -1,0 +1,58 @@
+name: pr
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened, ready_for_review]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          path: pr
+      - name: changed files
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >
+          gh api "repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/files"
+          --paginate -q '.[].filename' > changed.txt
+      - name: validate
+        run: python3 validate_pr.py pr changed.txt "${{ github.event.pull_request.user.login }}"
+      - name: report failure
+        if: ${{ failure() }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          [ -f validation_errors.txt ] || exit 0
+          {
+            echo "validation failed:"
+            echo '```'
+            cat validation_errors.txt
+            echo '```'
+            echo "fix and push to this branch, the check reruns on its own."
+          } > comment.md
+          gh pr comment ${{ github.event.pull_request.number }} --repo ${{ github.repository }} --body-file comment.md
+      - name: automerge
+        if: ${{ !github.event.pull_request.draft }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh pr merge ${{ github.event.pull_request.number }} --squash --repo ${{ github.repository }}
+      - name: regenerate index
+        if: ${{ !github.event.pull_request.draft }}
+        env:
+          BASE: ${{ github.event.pull_request.base.ref }}
+        run: |
+          git fetch origin "$BASE"
+          git checkout -B "$BASE" "origin/$BASE"
+          python3 gen_index.py
+          git config user.name "index-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add index.json
+          git diff --cached --quiet || (git commit -m "regenerate index" && git push origin "$BASE")
