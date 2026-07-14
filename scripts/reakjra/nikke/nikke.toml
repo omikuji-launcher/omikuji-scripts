@@ -1,0 +1,28 @@
+[script]
+name = "NIKKE"
+description = "Downloads the NikkeLinux miniloader and runs it to install NIKKE"
+author = "reakjra"
+icon = "./icon.png"
+
+[[input]]
+id = "prefix"
+kind = "prefix"
+picker = "path"
+label = "Wine prefix"
+
+[[step]]
+task = "init_prefix"
+
+[[step]]
+task = "download"
+url = "https://raw.githubusercontent.com/KoleckOLP/NikkeLinux/master/NikkeMiniloader0.0.6.143.exe"
+dest = "${cache}/NikkeMiniloader.exe"
+
+[[step]]
+task = "run_exe"
+exe = "${cache}/NikkeMiniloader.exe"
+
+[game]
+name = "NIKKE"
+wine_version = "system"
+exe = "${prefix}/drive_c/NIKKE/Launcher/nikke_launcher.exe"
