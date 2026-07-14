@@ -21,6 +21,16 @@
   },
   {
     "author": "reakjra",
+    "slug": "stove",
+    "name": "STOVE",
+    "description": "Downloads the STOVE client installer and runs it in a prefix of your choice",
+    "has_shell": true,
+    "modified": "2026-07-14",
+    "toml": "scripts/reakjra/stove/stove.toml",
+    "icon": "scripts/reakjra/stove/icon.png"
+  },
+  {
+    "author": "reakjra",
     "slug": "ubisoftconnect",
     "name": "Ubisoft Connect",
     "description": "Downloads the Ubisoft Connect installer and runs it in a prefix of your choice",
