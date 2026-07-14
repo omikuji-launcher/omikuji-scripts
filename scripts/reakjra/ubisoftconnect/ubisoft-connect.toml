@@ -1,0 +1,27 @@
+[script]
+name = "Ubisoft Connect"
+description = "Downloads the Ubisoft Connect installer and runs it in a prefix of your choice"
+author = "reakjra"
+icon = "./icon.png"
+
+[[input]]
+id = "prefix"
+kind = "prefix"
+picker = "path"
+label = "Wine prefix"
+
+[[step]]
+task = "init_prefix"
+
+[[step]]
+task = "download"
+url = "https://static3.cdn.ubi.com/orbit/launcher_installer/UbisoftConnectInstaller.exe"
+dest = "${cache}/UbisoftConnectInstaller.exe"
+
+[[step]]
+task = "run_exe"
+exe = "${cache}/UbisoftConnectInstaller.exe"
+
+[game]
+name = "Ubisoft Connect"
+exe = "${prefix}/drive_c/Program Files (x86)/Ubisoft/Ubisoft Game Launcher/UbisoftConnect.exe"
