@@ -8,5 +8,15 @@
     "modified": "2026-07-14",
     "toml": "scripts/reakjra/hoyoplay/hoyoplay.toml",
     "icon": "scripts/reakjra/hoyoplay/icon.png"
+  },
+  {
+    "author": "reakjra",
+    "slug": "ubisoftconnect",
+    "name": "Ubisoft Connect",
+    "description": "Downloads the Ubisoft Connect installer and runs it in a prefix of your choice",
+    "has_shell": false,
+    "modified": "2026-07-14",
+    "toml": "scripts/reakjra/ubisoftconnect/ubisoft-connect.toml",
+    "icon": "scripts/reakjra/ubisoftconnect/icon.png"
   }
 ]
