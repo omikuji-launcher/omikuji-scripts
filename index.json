@@ -1,3 +1,12 @@
 [
-
+  {
+    "author": "reakjra",
+    "slug": "hoyoplay",
+    "name": "HoYoPlay",
+    "description": "Downloads the official HoYoPlay launcher installer and runs it in a prefix of your choice",
+    "has_shell": false,
+    "modified": "2026-07-14",
+    "toml": "scripts/reakjra/hoyoplay/hoyoplay.toml",
+    "icon": "scripts/reakjra/hoyoplay/icon.png"
+  }
 ]
