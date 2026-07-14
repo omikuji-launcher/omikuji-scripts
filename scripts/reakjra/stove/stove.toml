@@ -1,0 +1,36 @@
+[script]
+name = "STOVE"
+description = "Downloads the STOVE client installer and runs it in a prefix of your choice"
+author = "reakjra"
+icon = "./icon.png"
+
+[[input]]
+id = "prefix"
+kind = "prefix"
+picker = "path"
+label = "Wine prefix"
+
+[[step]]
+task = "init_prefix"
+
+[[step]]
+task = "download"
+url = "https://go.microsoft.com/fwlink/?linkid=2124701"
+dest = "${cache}/WebView2Installer.exe"
+
+[[step]]
+task = "shell"
+run = "wine \"${cache}/WebView2Installer.exe\" /silent /install"
+
+[[step]]
+task = "download"
+url = "https://sgs-live-dl.game.playstove.com/game/lcs/STOVESetup.exe"
+dest = "${cache}/STOVESetup.exe"
+
+[[step]]
+task = "run_exe"
+exe = "${cache}/STOVESetup.exe"
+
+[game]
+name = "STOVE"
+exe = "${prefix}/drive_c/ProgramData/Smilegate/STOVE/STOVE.exe"
