@@ -11,6 +11,16 @@
   },
   {
     "author": "reakjra",
+    "slug": "nikke",
+    "name": "NIKKE",
+    "description": "Downloads the NikkeLinux miniloader and runs it to install NIKKE",
+    "has_shell": false,
+    "modified": "2026-07-14",
+    "toml": "scripts/reakjra/nikke/nikke.toml",
+    "icon": "scripts/reakjra/nikke/icon.png"
+  },
+  {
+    "author": "reakjra",
     "slug": "ubisoftconnect",
     "name": "Ubisoft Connect",
     "description": "Downloads the Ubisoft Connect installer and runs it in a prefix of your choice",
