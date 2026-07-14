@@ -21,6 +21,16 @@
   },
   {
     "author": "reakjra",
+    "slug": "rockstar",
+    "name": "Rockstar Games Launcher",
+    "description": "Downloads the official Rockstar Games Launcher installer and runs it in a prefix of your choice",
+    "has_shell": false,
+    "modified": "2026-07-14",
+    "toml": "scripts/reakjra/rockstar/rockstar.toml",
+    "icon": "scripts/reakjra/rockstar/icon.png"
+  },
+  {
+    "author": "reakjra",
     "slug": "stove",
     "name": "STOVE",
     "description": "Downloads the STOVE client installer and runs it in a prefix of your choice",
