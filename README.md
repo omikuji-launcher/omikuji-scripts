@@ -61,7 +61,7 @@ Each input becomes a form field. The value is available to steps as `${id}`.
 | field | required | notes |
 |---|---|---|
 | `id` | yes | unique. `cache` and `home` are reserved, `prefix` is only allowed on the prefix kind |
-| `kind` | yes | `prefix`, `file`, `directory`, `text`, `choice`, `bool` |
+| `kind` | yes | `prefix`, `runner`, `file`, `directory`, `text`, `choice`, `bool` |
 | `label` | yes | field label |
 | `picker` | no | prefix kind only: `list` (default, existing prefixes under `prefix_path` setting) or `path` (free path input) |
 | `filter` | no | file kind: picker patterns like `"*.exe"` or `"*.tar.gz *.zip"`, `.dll`, etc. |
@@ -69,6 +69,8 @@ Each input becomes a form field. The value is available to steps as `${id}`.
 | `default` | no | prefilled value, e.g, `"true"`/`"false"` |
 
 At most one `prefix` input. If a script has none, it creates a prefix automatically.
+
+At most one `runner` input too: the user picks one of their installed runners and it runs both the script steps and the registered game. Can't be combined with `wine_version`, pick one.
 
 ### `[[step]]`
 

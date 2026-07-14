@@ -11,7 +11,7 @@ TASKS = {
     "run_exe": ["exe"],
     "shell": ["run"],
 }
-KINDS = {"prefix", "file", "directory", "text", "choice", "bool"}
+KINDS = {"prefix", "runner", "file", "directory", "text", "choice", "bool"}
 BUILTINS = {"prefix", "cache", "home"}
 EXTS = {".toml", ".png", ".jpg", ".jpeg", ".webp", ".svg"}
 
@@ -44,6 +44,7 @@ def check_script(tag, data):
 
     known = set(BUILTINS)
     prefix_inputs = 0
+    runner_inputs = 0
     for inp in data.get("input", []):
         iid = str(inp.get("id", ""))
         kind = str(inp.get("kind", ""))
@@ -63,9 +64,13 @@ def check_script(tag, data):
                 err(f"{tag}: unknown picker {inp.get('picker')!r}")
         elif inp.get("picker"):
             err(f"{tag}: picker is only valid on prefix inputs ({iid!r})")
+        if kind == "runner":
+            runner_inputs += 1
         known.add(iid)
     if prefix_inputs > 1:
         err(f"{tag}: more than one prefix input")
+    if runner_inputs > 1:
+        err(f"{tag}: more than one runner input")
 
     templated = []
     for step in data.get("step", []):
@@ -89,6 +94,8 @@ def check_script(tag, data):
             templated.append(game["exe"])
         if game.get("runner", "") not in ("", "wine", "native"):
             err(f"{tag}: unsupported game.runner {game.get('runner')!r}")
+        if runner_inputs and str(game.get("wine_version", "")).strip():
+            err(f"{tag}: declare a runner input or game.wine_version, not both")
         templated.extend(str(v) for v in game.get("env", {}).values())
         templated.extend(str(v) for v in game.get("dll_overrides", {}).values())
 
