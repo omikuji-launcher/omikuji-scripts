@@ -43,7 +43,12 @@ jobs:
         if: ${{ !github.event.pull_request.draft }}
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh pr merge ${{ github.event.pull_request.number }} --squash --repo ${{ github.repository }}
+        run: |
+          if [ -s merge_subject.txt ]; then
+            gh pr merge ${{ github.event.pull_request.number }} --squash --repo ${{ github.repository }} --subject "$(cat merge_subject.txt)"
+          else
+            gh pr merge ${{ github.event.pull_request.number }} --squash --repo ${{ github.repository }}
+          fi
       - name: regenerate index
         if: ${{ !github.event.pull_request.draft }}
         env:

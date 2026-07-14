@@ -121,10 +121,12 @@ def main():
             continue
         script_dirs.add((owner, slug))
 
+    titles = []
     for owner, slug in sorted(script_dirs):
         tag = f"{owner}/{slug}"
         d = root / "scripts" / owner / slug
         if not d.is_dir():
+            titles.append(slug)
             continue
         tomls = sorted(d.glob("*.toml"))
         if len(tomls) != 1:
@@ -141,6 +143,7 @@ def main():
         except Exception as e:
             err(f"{tag}: {e}")
             continue
+        titles.append(str(data.get("script", {}).get("name", "")).strip() or slug)
         icon = str(data.get("script", {}).get("icon", ""))
         if icon:
             icon_path = (d / icon).resolve()
@@ -154,6 +157,8 @@ def main():
         for e in errors:
             print(f"  - {e}")
         sys.exit(1)
+    if titles:
+        Path("merge_subject.txt").write_text(f"{author}: {', '.join(titles)}\n")
     print(f"validated {len(script_dirs)} script(s), all good")
 
 
