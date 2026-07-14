@@ -1,0 +1,32 @@
+[script]
+name = "Rockstar Games Launcher"
+description = "Downloads the official Rockstar Games Launcher installer and runs it in a prefix of your choice"
+author = "reakjra"
+icon = "./icon.png"
+
+[[input]]
+id = "prefix"
+kind = "prefix"
+picker = "path"
+label = "Wine prefix"
+
+[[input]]
+id = "runner"
+kind = "runner"
+label = "Runner (Proton recommended~)"
+
+[[step]]
+task = "init_prefix"
+
+[[step]]
+task = "download"
+url = "https://gamedownloads.rockstargames.com/public/installer/Rockstar-Games-Launcher.exe"
+dest = "${cache}/Rockstar-Games-Launcher.exe"
+
+[[step]]
+task = "run_exe"
+exe = "${cache}/Rockstar-Games-Launcher.exe"
+
+[game]
+name = "Rockstar Games Launcher"
+exe = "${prefix}/drive_c/Program Files/Rockstar Games/Launcher/Launcher.exe"
