@@ -1,0 +1,27 @@
+[script]
+name = "HoYoPlay"
+description = "Downloads the official HoYoPlay launcher installer and runs it in a prefix of your choice"
+author = "reakjra"
+icon = "./icon.png"
+
+[[input]]
+id = "prefix"
+kind = "prefix"
+picker = "path"
+label = "Wine prefix"
+
+[[step]]
+task = "init_prefix"
+
+[[step]]
+task = "download"
+url = "https://sg-public-api.hoyoverse.com/event/download_porter/link/hyp/hoyoverse/prod/default"
+dest = "${cache}/HoYoPlay-Setup.exe"
+
+[[step]]
+task = "run_exe"
+exe = "${cache}/HoYoPlay-Setup.exe"
+
+[game]
+name = "HoYoPlay"
+exe = "${prefix}/drive_c/Program Files/HoYoPlay/launcher.exe"
