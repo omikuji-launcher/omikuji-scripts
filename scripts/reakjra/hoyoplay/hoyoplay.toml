@@ -15,7 +15,7 @@ task = "init_prefix"
 
 [[step]]
 task = "download"
-url = "https://sg-public-api.hoyoverse.com/event/download_porter/link/hyp/hoyoverse/prod/default"
+url = "https://download-porter.hoyoverse.com/download-porter/2026/03/30/VYTpXlbWo8_1.14.2.345_1_0_hyp_hoyoverse_prod_202603021207_dJyiMLNi.exe"
 dest = "${cache}/HoYoPlay-Setup.exe"
 
 [[step]]
@@ -25,3 +25,6 @@ exe = "${cache}/HoYoPlay-Setup.exe"
 [game]
 name = "HoYoPlay"
 exe = "${prefix}/drive_c/Program Files/HoYoPlay/launcher.exe"
+
+[game.env]
+PROTON_NO_WM_DECORATION = "1"
