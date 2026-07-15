@@ -3,6 +3,7 @@ name = "STOVE"
 description = "Downloads the STOVE client installer and runs it in a prefix of your choice"
 author = "reakjra"
 icon = "./icon.png"
+note = "This may take a while due WebView2 installation."
 
 [[input]]
 id = "prefix"
