@@ -15,7 +15,7 @@
     "name": "NIKKE",
     "description": "Downloads the NikkeLinux miniloader and runs it to install NIKKE",
     "has_shell": false,
-    "modified": "2026-07-14",
+    "modified": "2026-07-15",
     "toml": "scripts/reakjra/nikke/nikke.toml",
     "icon": "scripts/reakjra/nikke/icon.png"
   },
@@ -25,7 +25,7 @@
     "name": "Rockstar Games Launcher",
     "description": "Downloads the official Rockstar Games Launcher installer and runs it in a prefix of your choice",
     "has_shell": false,
-    "modified": "2026-07-14",
+    "modified": "2026-07-15",
     "toml": "scripts/reakjra/rockstar/rockstar.toml",
     "icon": "scripts/reakjra/rockstar/icon.png"
   },
@@ -35,7 +35,7 @@
     "name": "STOVE",
     "description": "Downloads the STOVE client installer and runs it in a prefix of your choice",
     "has_shell": true,
-    "modified": "2026-07-14",
+    "modified": "2026-07-15",
     "toml": "scripts/reakjra/stove/stove.toml",
     "icon": "scripts/reakjra/stove/icon.png"
   },
@@ -45,7 +45,7 @@
     "name": "Ubisoft Connect",
     "description": "Downloads the Ubisoft Connect installer and runs it in a prefix of your choice",
     "has_shell": false,
-    "modified": "2026-07-14",
+    "modified": "2026-07-15",
     "toml": "scripts/reakjra/ubisoftconnect/ubisoft-connect.toml",
     "icon": "scripts/reakjra/ubisoftconnect/icon.png"
   }
