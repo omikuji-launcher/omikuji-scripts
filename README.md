@@ -82,7 +82,7 @@ Steps run in order. All string fields support `${variables}`.
 | `winetricks` | `verbs` | runs `winetricks -q` with the listed verbs |
 | `download` | `url`, `dest`, `sha256` (optional) | downloads with progress, verifies the checksum if given |
 | `extract` | `archive`, `dest` | unpacks zip, tar.gz, tgz, tar.xz, tar.zst or tar, detected automatically |
-| `run_exe` | `exe` | runs the exe through wine and waits for it to exit. |
+| `run_exe` | `exe`, `dll_overrides` (optional) | runs the exe through wine and waits for it to exit. `dll_overrides` is a key/value map applied as `WINEDLLOVERRIDES` for that run only |
 | `shell` | `run` | runs through `sh -c` with `WINEPREFIX` set, working dir is the cache. Scripts with a shell step show a warning and a red install button |
 
 ### `[game]`

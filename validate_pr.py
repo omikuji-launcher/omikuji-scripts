@@ -83,6 +83,7 @@ def check_script(tag, data):
                 err(f"{tag}: task {task!r} is missing {field!r}")
             elif isinstance(step[field], str):
                 templated.append(step[field])
+        templated.extend(str(v) for v in step.get("dll_overrides", {}).values())
 
     game = data.get("game")
     if game is not None:
