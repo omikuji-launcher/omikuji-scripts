@@ -1,0 +1,37 @@
+[script]
+name = "Netmarble Launcher"
+description = "Downloads the official Netmarble Launcher installer and runs it in a prefix of your choice"
+author = "reakjra"
+note = "Usable in version 0.8.2 \nDownload might take a bit."
+icon = "./icon.png"
+
+[[input]]
+id = "prefix"
+kind = "prefix"
+picker = "path"
+label = "Wine prefix"
+
+[[input]]
+id = "runner"
+kind = "runner"
+label = "Runner (any Proton works~)"
+
+[[step]]
+task = "init_prefix"
+
+[[step]]
+task = "download"
+url = "https://apis.netmarble.com/cpplauncher/view/launcher/download"
+dest = "${cache}/Netmarble_Launcher_Setup.exe"
+
+[[step]]
+task = "run_exe"
+exe = "${cache}/Netmarble_Launcher_Setup.exe"
+dll_overrides = { "powershell.exe" = "d" }
+
+[game]
+name = "Netmarble Launcher"
+exe = "${prefix}/drive_c/Program Files/Netmarble/Netmarble Launcher/Netmarble Launcher.exe"
+
+[game.dll_overrides]
+"powershell.exe" = "d"
