@@ -1,6 +1,16 @@
 [
   {
     "author": "reakjra",
+    "slug": "arknights",
+    "name": "Arknights",
+    "description": "Downloads and installs the Arknights launcher. Pick your region: Global (Yostar) or CN (Hypergryph)",
+    "has_shell": false,
+    "modified": "2026-08-16",
+    "toml": "scripts/reakjra/arknights/arknights.toml",
+    "icon": "scripts/reakjra/arknights/icon.png"
+  },
+  {
+    "author": "reakjra",
     "slug": "hoyoplay",
     "name": "HoYoPlay",
     "description": "Downloads the official HoYoPlay launcher installer and runs it in a prefix of your choice",
