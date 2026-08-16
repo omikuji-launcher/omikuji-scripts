@@ -43,6 +43,7 @@ def check_script(tag, data):
         err(f"{tag}: script.name is missing")
 
     known = set(BUILTINS)
+    inputs = {}
     prefix_inputs = 0
     runner_inputs = 0
     for inp in data.get("input", []):
@@ -67,10 +68,22 @@ def check_script(tag, data):
         if kind == "runner":
             runner_inputs += 1
         known.add(iid)
+        inputs[iid] = inp
     if prefix_inputs > 1:
         err(f"{tag}: more than one prefix input")
     if runner_inputs > 1:
         err(f"{tag}: more than one runner input")
+
+    def check_when(when, where):
+        if not isinstance(when, dict):
+            err(f"{tag}: {where} when must be a table")
+            return
+        for key, val in when.items():
+            inp = inputs.get(key)
+            if inp is None:
+                err(f"{tag}: {where} when references unknown input {key!r}")
+            elif inp.get("kind") == "choice" and str(val) not in [str(o) for o in inp.get("options", [])]:
+                err(f"{tag}: {where} when value {val!r} is not an option of choice {key!r}")
 
     templated = []
     for step in data.get("step", []):
@@ -84,9 +97,15 @@ def check_script(tag, data):
             elif isinstance(step[field], str):
                 templated.append(step[field])
         templated.extend(str(v) for v in step.get("dll_overrides", {}).values())
+        if "when" in step:
+            check_when(step["when"], f"step {task!r}")
 
-    game = data.get("game")
-    if game is not None:
+    games = data.get("game")
+    if games is None:
+        games = []
+    elif not isinstance(games, list):
+        games = [games]
+    for game in games:
         if not str(game.get("name", "")).strip():
             err(f"{tag}: game.name is missing")
         if not str(game.get("exe", "")).strip():
@@ -99,6 +118,8 @@ def check_script(tag, data):
             err(f"{tag}: declare a runner input or game.wine_version, not both")
         templated.extend(str(v) for v in game.get("env", {}).values())
         templated.extend(str(v) for v in game.get("dll_overrides", {}).values())
+        if "when" in game:
+            check_when(game["when"], "game")
 
     for text in templated:
         for var in placeholders(text, tag):

@@ -85,9 +85,39 @@ Steps run in order. All string fields support `${variables}`.
 | `run_exe` | `exe`, `dll_overrides` (optional) | runs the exe through wine and waits for it to exit. `dll_overrides` is a key/value map applied as `WINEDLLOVERRIDES` for that run only |
 | `shell` | `run` | runs through `sh -c` with `WINEPREFIX` set, working dir is the cache. Scripts with a shell step show a warning and a red install button |
 
-### `[game]`
+Any step can also carry a `when`, see [Conditions](#conditions).
+
+### Conditions
+
+Any `[[step]]` or game can carry a `when` table. It only runs (or registers) when every listed input equals its value:
+
+```toml
+[[step]]
+task = "download"
+url = "https://.../launcher-global.exe"
+dest = "${cache}/launcher.exe"
+when = { region = "Global" }
+```
+
+Keys are input ids, values are what to match (for a `choice`, one of its `options`). Multiple keys all have to match. Anything with no `when` always runs.
+
+### `[game]` / `[[game]]`
 
 Optional. With it, the script registers a library entry when it finishes. Without it its just a silly utility.
+
+Use a single `[game]` table, or several `[[game]]` blocks with `when` to register a different game per branch. The first game whose `when` matches wins:
+
+```toml
+[[game]]
+name = "Arknights (Global)"
+exe = "${prefix}/drive_c/Program Files/YostarGames/Arknights_EN_Gamelauncher/Arknights_EN_Gamelauncher.exe"
+when = { region = "Global" }
+
+[[game]]
+name = "Arknights (CN)"
+exe = "${prefix}/drive_c/Program Files/Hypergryph Launcher/Launcher.exe"
+when = { region = "CN" }
+```
 
 | field | required | notes |
 |---|---|---|
@@ -95,6 +125,7 @@ Optional. With it, the script registers a library entry when it finishes. Withou
 | `exe` | yes | checked after the steps run. If it is missing, omikuji asks the user to locate it |
 | `runner` | no | `wine` (default) or `native` |
 | `wine_version` | no | runner for the wine steps and the registered game. `"system"` forces system wine. without steps use system wine and the game gets the user's default runner |
+| `when` | no | with `[[game]]`, only register this one when the inputs match, see [Conditions](#conditions) |
 | `[game.env]` | no | key/value map merged into the game's launch environment |
 | `[game.dll_overrides]` | no | key/value map of wine dll overrides |
 
