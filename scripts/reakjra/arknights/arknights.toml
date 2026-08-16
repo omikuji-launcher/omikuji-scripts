@@ -1,0 +1,58 @@
+[script]
+name = "Arknights"
+description = "Downloads and installs the Arknights launcher. Pick your region: Global (Yostar) or CN (Hypergryph)"
+author = "reakjra"
+icon = "./icon.png"
+note = "Close the launcher when the installer finishes so the script can continue."
+
+[[input]]
+id = "prefix"
+kind = "prefix"
+picker = "path"
+label = "Wine prefix"
+
+[[input]]
+id = "runner"
+kind = "runner"
+label = "Runner (any Proton works~)"
+
+[[input]]
+id = "region"
+kind = "choice"
+label = "Region"
+options = ["Global", "CN"]
+
+[[step]]
+task = "init_prefix"
+
+[[step]]
+task = "download"
+url = "https://launcher-pkg-ark-en.yo-star.com/install_pkg/game_launcher/Arknights_EN/Arknights_EN_Gamelauncher-1.8.1-setup.exe"
+dest = "${cache}/Arknights_EN_Gamelauncher-1.8.1-setup.exe"
+when = { region = "Global" }
+
+[[step]]
+task = "run_exe"
+exe = "${cache}/Arknights_EN_Gamelauncher-1.8.1-setup.exe"
+when = { region = "Global" }
+
+[[step]]
+task = "download"
+url = "https://launcher.hypergryph.com/launcher/get_latest_launcher?appcode=abYeZZ16BPluCFyT&channel=1"
+dest = "${cache}/HypergryphLauncher_v1.5.0.1511_1_1_official.exe"
+when = { region = "CN" }
+
+[[step]]
+task = "run_exe"
+exe = "${cache}/HypergryphLauncher_v1.5.0.1511_1_1_official.exe"
+when = { region = "CN" }
+
+[[game]]
+name = "Arknights (Global)"
+exe = "${prefix}/drive_c/YostarGames/Arknights_EN_Gamelauncher/Arknights_EN_Gamelauncher.exe"
+when = { region = "Global" }
+
+[[game]]
+name = "Arknights (CN)"
+exe = "${prefix}/drive_c/Program Files/Hypergryph Launcher/Launcher.exe"
+when = { region = "CN" }
