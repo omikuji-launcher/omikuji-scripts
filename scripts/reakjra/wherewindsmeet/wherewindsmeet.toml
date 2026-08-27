@@ -1,0 +1,58 @@
+[script]
+name = "Where Winds Meet"
+description = "Downloads and installs the Where Winds Meet launcher. Pick Globalor CN"
+author = "reakjra"
+icon = "./icon.png"
+note = "Close the launcher when the installer finishes so the script can continue."
+
+[[input]]
+id = "prefix"
+kind = "prefix"
+picker = "path"
+label = "Wine prefix"
+
+[[input]]
+id = "runner"
+kind = "runner"
+label = "Runner (any Proton works~)"
+
+[[input]]
+id = "region"
+kind = "choice"
+label = "Region"
+options = ["Global", "CN"]
+
+[[step]]
+task = "init_prefix"
+
+[[step]]
+task = "download"
+url = "https://h72naxx2gb.gdl.easebar.com/wwm_1.0.0_neteaseglobal_setup.exe"
+dest = "${cache}/wwm_1.0.0_neteaseglobal_setup.exe"
+when = { region = "Global" }
+
+[[step]]
+task = "run_exe"
+exe = "${cache}/wwm_1.0.0_neteaseglobal_setup.exe"
+when = { region = "Global" }
+
+[[step]]
+task = "download"
+url = "https://h72.gdl.netease.com/yysls_1.9.36_netease_setup.exe?key1=f027c771b0cdc73bda5ca6105250f0b8&key2=6a9147c4"
+dest = "${cache}/yysls_1.9.36_netease_setup.exe"
+when = { region = "CN" }
+
+[[step]]
+task = "run_exe"
+exe = "${cache}/yysls_1.9.36_netease_setup.exe"
+when = { region = "CN" }
+
+[[game]]
+name = "Where Winds Meet (Global)"
+exe = "${prefix}/drive_c/Program Files/wwm/Win32/deploy/launcher.exe"
+when = { region = "Global" }
+
+[[game]]
+name = "Where Winds Meet (CN)"
+exe = "${prefix}/drive_c/Program Files/yysls/Win32/deploy/launcher.exe"
+when = { region = "CN" }
