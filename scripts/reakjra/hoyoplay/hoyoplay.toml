@@ -3,7 +3,7 @@ name = "HoYoPlay"
 description = "Downloads the official HoYoPlay launcher installer and runs it in a prefix of your choice"
 author = "reakjra"
 icon = "./icon.png"
-note = "zero clue why would u use this considering omikuji has every game in it but wtv do your thing"
+note = "Let the launcher open when the installer finishes, then close it so the script can continue. Closing the installer early can leave the install folder unrecorded."
 
 [[input]]
 id = "prefix"
