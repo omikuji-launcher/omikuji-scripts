@@ -25,7 +25,7 @@
     "name": "HoYoPlay",
     "description": "Downloads the official HoYoPlay launcher installer and runs it in a prefix of your choice",
     "has_shell": false,
-    "modified": "2026-09-24",
+    "modified": "2026-09-25",
     "toml": "scripts/reakjra/hoyoplay/hoyoplay.toml",
     "icon": "scripts/reakjra/hoyoplay/icon.png"
   },
