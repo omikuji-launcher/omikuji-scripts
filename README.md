@@ -1,6 +1,6 @@
 ## omikuji-scripts
 
-Community scripts for [omikuji](https://github.com/reakjra/omikuji). A script is a single TOML file that describes how to set up a game: pick a prefix, run winetricks, download an installer, run it, register the result in the library. Omikuji renders the inputs as a form, runs the steps, and streams the output.
+Community scripts for [omikuji](https://github.com/omikuji-launcher/omikuji). A script is a single TOML file that describes how to set up a game: pick a prefix, run winetricks, download an installer, run it, register the result in the library. Omikuji renders the inputs as a form, runs the steps, and streams the output.
 
 In omikuji: **+** button, then **Install script**. Local scripts show right away, typing in the search also looks up this repo. Installing a remote script downloads just that script's folder (deletable, tho manually).
 
@@ -217,7 +217,7 @@ Fork, add your folder, open a PR. CI validates and merges on its own if valid. I
 
 These rules are mandatory in order to make the CI merge your PR:
 
-- files only under `scripts/<your-github-username>/`, verified against the PR author
+- files only under `scripts/<your-github-username>/`, verified against the PR author, unless you're [editing someone else's script](#editing-someone-elses-script)
 - exactly one `.toml` per script folder
 - allowed files: `.toml`, `.png`, `.jpg`, `.jpeg`, `.webp`, `.svg`
 - toml up to 64KB, images up to 1MB
@@ -225,3 +225,11 @@ These rules are mandatory in order to make the CI merge your PR:
 - the script must pass the same validation omikuji runs
 
 Test before opening a PR: **+**, **Install script**, **Use local**, pick your toml.
+
+#### Editing someone else's script
+
+A PR can change another author's script, as long as it touches only that one script folder. CI validates it as usual, but instead of merging it tags the owner, and it merges once the owner comments `/approve` on the PR.
+
+- only the folder owner's `/approve` counts, and the comment has to be exactly `/approve`
+
+Yeah pretty obvious.
