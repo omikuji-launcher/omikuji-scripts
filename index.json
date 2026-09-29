@@ -98,5 +98,15 @@
     "modified": "2026-09-17",
     "toml": "scripts/reakjra/wherewindsmeet/wherewindsmeet.toml",
     "icon": "scripts/reakjra/wherewindsmeet/icon.png"
+  },
+  {
+    "author": "reakjra",
+    "slug": "wutheringwaves",
+    "name": "Wuthering Waves",
+    "description": "Downloads the official Wuthering Waves launcher installer and runs it in a prefix of your choice",
+    "has_shell": false,
+    "modified": "2026-09-30",
+    "toml": "scripts/reakjra/wutheringwaves/wutheringwaves.toml",
+    "icon": "scripts/reakjra/wutheringwaves/icon.png"
   }
 ]
