@@ -1,0 +1,54 @@
+[script]
+name = "Wuthering Waves"
+description = "Downloads the official Wuthering Waves launcher installer and runs it in a prefix of your choice"
+author = "reakjra"
+icon = "./icon.png"
+note = "Let the launcher open when the installer finishes, then close it so the script can continue. Closing the installer early can leave the install folder unrecorded."
+
+[[input]]
+id = "prefix"
+kind = "prefix"
+picker = "path"
+label = "Wine prefix"
+
+[[input]]
+id = "runner"
+kind = "runner"
+label = "Runner (any Proton works~)"
+
+[[input]]
+id = "region"
+kind = "choice"
+label = "Region"
+options = ["Global", "CN"]
+
+[[step]]
+task = "init_prefix"
+
+[[step]]
+task = "download"
+url_from = "https://download.kurogames.net/mc_WnGtDn85y8lJB4mTmYHYuNjIl9n6YGVm/official/global/en/pc_app.json"
+url_match = 'https://mirrors-package-mc\.aki-game\.net/[^"]+\.exe'
+dest = "${cache}/wuwa-setup.exe"
+when = { region = "Global" }
+
+[[step]]
+task = "download"
+url_from = "https://download.kurogames.com/mc_WnGtDn85y8lJB4mTmYHYuNjIl9n6YGVm/official/cn/zh-Hans/pc_app.json"
+url_match = 'https://mirrors-package-mc\.aki-game\.com/[^"]+\.exe'
+dest = "${cache}/wuwa-setup.exe"
+when = { region = "CN" }
+
+[[step]]
+task = "run_exe"
+exe = "${cache}/wuwa-setup.exe"
+
+[[game]]
+name = "Wuthering Waves"
+exe_from_registry = "KRInstall Wuthering Waves Overseas"
+when = { region = "Global" }
+
+[[game]]
+name = "Wuthering Waves (CN)"
+exe_from_registry = "KRInstall Wuthering Waves"
+when = { region = "CN" }
