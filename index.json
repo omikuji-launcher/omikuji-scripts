@@ -21,6 +21,16 @@
   },
   {
     "author": "reakjra",
+    "slug": "gf2exilium",
+    "name": "Girls' Frontline 2: Exilium",
+    "description": "Downloads the official Girls' Frontline 2: Exilium launcher installer and runs it in a prefix of your choice",
+    "has_shell": false,
+    "modified": "2026-10-04",
+    "toml": "scripts/reakjra/gf2exilium/gf2exilium.toml",
+    "icon": "scripts/reakjra/gf2exilium/icon.png"
+  },
+  {
+    "author": "reakjra",
     "slug": "hoyoplay",
     "name": "HoYoPlay",
     "description": "Downloads the official HoYoPlay launcher installer and runs it in a prefix of your choice",
