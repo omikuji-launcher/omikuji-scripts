@@ -1,0 +1,33 @@
+[script]
+name = "Girls' Frontline 2: Exilium"
+description = "Downloads the official Girls' Frontline 2: Exilium launcher installer and runs it in a prefix of your choice"
+author = "reakjra"
+icon = "./icon.png"
+
+[[input]]
+id = "prefix"
+kind = "prefix"
+picker = "path"
+label = "Wine prefix"
+
+[[input]]
+id = "runner"
+kind = "runner"
+label = "Runner"
+
+[[step]]
+task = "init_prefix"
+
+[[step]]
+task = "download"
+url_from = "https://gf2-web-us-api.sunborngame.com/website/url_manage"
+url_match = 'https://gf2-us-cdn\.sunborngame\.com/prod/download/launcher/[^"]+\.exe'
+dest = "${cache}/gf2-setup.exe"
+
+[[step]]
+task = "run_exe"
+exe = "${cache}/gf2-setup.exe"
+
+[[game]]
+name = "Girls' Frontline 2: Exilium"
+exe_from_registry = "GF2Exilium"
