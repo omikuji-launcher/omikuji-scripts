@@ -5,9 +5,19 @@
     "name": "Arknights",
     "description": "Downloads and installs the Arknights launcher. Pick your region: Global (Yostar) or CN (Hypergryph)",
     "has_shell": false,
-    "modified": "2026-09-17",
+    "modified": "2026-11-24",
     "toml": "scripts/reakjra/arknights/arknights.toml",
     "icon": "scripts/reakjra/arknights/icon.png"
+  },
+  {
+    "author": "reakjra",
+    "slug": "azurpromilia",
+    "name": "Azur Promilia",
+    "description": "Downloads the official Azur Promilia launcher installer and runs it in a prefix of your choice",
+    "has_shell": false,
+    "modified": "2026-11-24",
+    "toml": "scripts/reakjra/azurpromilia/azurpromilia.toml",
+    "icon": "scripts/reakjra/azurpromilia/icon.png"
   },
   {
     "author": "reakjra",
