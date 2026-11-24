@@ -3,7 +3,7 @@ name = "Arknights"
 description = "Downloads and installs the Arknights launcher. Pick your region: Global (Yostar) or CN (Hypergryph)"
 author = "reakjra"
 icon = "./icon.png"
-note = "et the launcher open when the installer finishes, then close it so the script can continue. Closing the installer early can leave the install folder unrecorded."
+note = "Let the launcher open when the installer finishes, then close it so the script can continue. Closing the installer early can leave the install folder unrecorded."
 
 [[input]]
 id = "prefix"

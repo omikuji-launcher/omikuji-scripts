@@ -1,0 +1,77 @@
+[script]
+name = "Azur Promilia"
+description = "Downloads the official Azur Promilia launcher installer and runs it in a prefix of your choice"
+author = "reakjra"
+icon = "./icon.png"
+note = "Each region has its own launcher, mind the steps."
+
+[[input]]
+id = "prefix"
+kind = "prefix"
+picker = "path"
+label = "Wine prefix"
+
+[[input]]
+id = "runner"
+kind = "runner"
+label = "Runner (any Proton works~)"
+
+[[input]]
+id = "region"
+kind = "choice"
+label = "Region"
+options = ["JP", "TW/HK/MO", "CN"]
+
+[[step]]
+task = "init_prefix"
+
+[[step]]
+task = "download"
+url = "https://launcher-pkg-azupro-jp.yo-star.com/install_pkg/game_launcher/AZUPRO_JP/AZUPRO_JP_Gamelauncher-1.8.1-setup.exe"
+dest = "${cache}/AZUPRO_JP_Gamelauncher-1.8.1-setup.exe"
+when = { region = "JP" }
+
+[[step]]
+task = "run_exe"
+exe = "${cache}/AZUPRO_JP_Gamelauncher-1.8.1-setup.exe"
+when = { region = "JP" }
+
+[[step]]
+task = "download"
+url = "https://syncstation-rgn1.jimi-global.com/azurpromilia/launcher/sc500/20261124223135_zmmnzyammugwncha/AzurPromilia_setup_1.0.2.2_TC.exe"
+dest = "${cache}/AzurPromilia_setup_TC.exe"
+when = { region = "TW/HK/MO" }
+
+[[step]]
+task = "run_exe"
+exe = "${cache}/AzurPromilia_setup_TC.exe"
+when = { region = "TW/HK/MO" }
+
+[[step]]
+task = "download"
+url = "https://syncstation.manjuu.com/azurpromilia/launcher/c000/20261106163058_wqkdhmcvupcninfi/AzurPromilia_manjuu_installer_1.0.1.1_35_SC000_202610282107.exe"
+dest = "${cache}/AzurPromilia_manjuu_installer.exe"
+when = { region = "CN" }
+
+[[step]]
+task = "run_exe"
+exe = "${cache}/AzurPromilia_manjuu_installer.exe"
+when = { region = "CN" }
+
+[[game]]
+name = "Azur Promilia (JP)"
+exe_from_registry = "bbbc3006-6fe5-52d1-8f2c-e554c31fefef"
+when = { region = "JP" }
+
+[game.env]
+PROTON_NO_WM_DECORATION = "1"
+
+[[game]]
+name = "Azur Promilia (TW/HK/MO)"
+exe_from_registry = "Azurpromilia_TC_43_C500"
+when = { region = "TW/HK/MO" }
+
+[[game]]
+name = "Azur Promilia (CN)"
+exe_from_registry = "AzurPromilia_35_C000"
+when = { region = "CN" }
